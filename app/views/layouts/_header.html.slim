@@ -1,0 +1,8 @@
+nav.navbar.navbar-expand-sm.navbar-light.bg-light
+  = link_to 'Tutu', root_path, class: 'navbar-brand'
+  #nav-content.collapse.navbar-collapse.justify-content-end
+    ul.navbar-nav
+      - if user_signed_in?
+        li = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
+      - else
+        li = link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'
