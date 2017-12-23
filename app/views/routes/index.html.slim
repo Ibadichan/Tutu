@@ -1,0 +1,10 @@
+table.table.table-bordered.table-hover
+  thead
+    tr
+      th Id
+      th Title
+  tbody
+    - @routes.each do |route|
+      tr
+        td  = route.id
+        td  = route.title
