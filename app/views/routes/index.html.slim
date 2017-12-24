@@ -3,8 +3,12 @@ table.table.table-bordered.table-hover
     tr
       th Id
       th Title
+      th Show route
   tbody
     - @routes.each do |route|
       tr
         td  = route.id
         td  = route.title
+        td  = link_to 'See more ...', route, class: 'btn btn-info'
+
+= link_to 'Add Route', new_route_path, class: 'btn btn-primary'
