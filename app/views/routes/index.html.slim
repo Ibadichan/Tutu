@@ -5,6 +5,7 @@ table.table.table-bordered.table-hover
       th Title
       th Show
       th Edit
+      th Delete
   tbody
     - @routes.each do |route|
       tr
@@ -12,5 +13,7 @@ table.table.table-bordered.table-hover
         td  = route.title
         td  = link_to 'See more ...', route, class: 'btn btn-info'
         td  = link_to 'Update', edit_route_path(route), class: 'btn btn-success'
+        td  = link_to 'Destroy', route, class: 'btn btn-danger',
+                                 remote: true, method: :delete, data: { route_id: route.id }
 
 = link_to 'Add Route', new_route_path, class: 'btn btn-primary'
