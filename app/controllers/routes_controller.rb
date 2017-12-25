@@ -1,8 +1,9 @@
 class RoutesController < ApplicationController
-  before_action :set_route, except:  %i[index new create]
+  before_action :set_route, except: %i[index new create]
 
   def index
-    respond_with @routes = Route.all
+    @routes = Route.order(id: :asc).page params[:page]
+    respond_with @routes
   end
 
   def show; end

@@ -7,10 +7,12 @@ end
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap4-kaminari-views'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'

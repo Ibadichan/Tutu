@@ -16,4 +16,5 @@ table.table.table-bordered.table-hover
         td  = link_to 'Destroy', route, class: 'btn btn-danger',
                                  remote: true, method: :delete, data: { route_id: route.id }
 
-= link_to 'Add Route', new_route_path, class: 'btn btn-primary'
+= link_to 'Add Route', new_route_path, class: 'btn btn-primary float-right'
+= paginate @routes, theme: 'twitter-bootstrap-4'
