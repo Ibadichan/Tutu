@@ -1,5 +1,5 @@
 class RoutesController < ApplicationController
-  before_action :set_route, only: %i[edit show update]
+  before_action :set_route, except:  %i[index new create]
 
   def index
     respond_with @routes = Route.all
@@ -20,6 +20,10 @@ class RoutesController < ApplicationController
   def update
     @route.update(route_params)
     respond_with @route
+  end
+
+  def destroy
+    respond_with @route.destroy
   end
 
   private

@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe RoutesController, type: :controller do
   sign_in_user
 
+  let(:route) { create(:route) }
+
   RSpec.shared_examples 'assigns the requested route to @route' do
     it { expect(assigns(:route)).to eq route }
   end
@@ -66,7 +68,6 @@ RSpec.describe RoutesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:route) { create(:route) }
     before { get :show, params: { id: route } }
 
     it_behaves_like 'assigns the requested route to @route'
@@ -77,7 +78,6 @@ RSpec.describe RoutesController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let(:route) { create(:route) }
     before { get :edit, params: { id: route } }
 
     it_behaves_like 'assigns the requested route to @route'
@@ -116,6 +116,20 @@ RSpec.describe RoutesController, type: :controller do
       it 'renders template edit' do
         expect(response).to render_template :edit
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the route' do
+      route
+      expect do
+        delete :destroy, params: { id: route, format: :js }
+      end.to change(Route, :count).by(-1)
+    end
+
+    it 'renders template destroy' do
+      delete :destroy, params: { id: route, format: :js }
+      expect(response).to render_template :destroy
     end
   end
 end
