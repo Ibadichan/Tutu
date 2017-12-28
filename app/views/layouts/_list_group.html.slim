@@ -1,2 +1,5 @@
 .list-group
-  = link_to 'Routes', routes_path, class: 'list-group-item list-group-item-action'
+  = link_to 'Routes', routes_path,
+          class: "list-group-item list-group-item-action #{active_class(routes_path)}"
+  = link_to 'Railway Stations', railway_stations_path,
+          class: "list-group-item list-group-item-action #{active_class(railway_stations_path)}"
