@@ -1,0 +1,20 @@
+table.table.table-bordered.table-hover
+  thead
+    tr
+      th Id
+      th Title
+      th Show
+      th Edit
+      th Delete
+  tbody
+    - @railway_stations.each do |station|
+      tr
+        td  = station.id
+        td  = station.title
+        td  = link_to 'See more ...', station, class: 'btn btn-info'
+        td  = link_to 'Update', edit_railway_station_path(station), class: 'btn btn-success'
+        td  = link_to 'Destroy', station, class: 'btn btn-danger',
+                remote: true, method: :delete, data: { railway_station_id: station.id }
+
+= link_to 'Add Railway Station', new_railway_station_path, class: 'btn btn-primary float-right'
+= paginate @railway_stations, theme: 'twitter-bootstrap-4'
