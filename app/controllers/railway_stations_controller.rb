@@ -23,6 +23,10 @@ class RailwayStationsController < ApplicationController
     respond_with @railway_station
   end
 
+  def destroy
+    respond_with @railway_station.destroy
+  end
+
   private
 
   def set_railway_station
