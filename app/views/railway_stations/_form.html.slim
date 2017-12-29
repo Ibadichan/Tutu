@@ -1,0 +1,7 @@
+= form_for railway_station do |f|
+  .form-row
+    .form-group.col-6
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.submit "#{railway_station.new_record? ? 'Create' : 'Edit'}", class: 'btn btn-primary'
