@@ -1,0 +1,20 @@
+table.table.table-bordered.table-hover
+  thead
+    tr
+      th Id
+      th Number
+      th Show
+      th Edit
+      th Delete
+  tbody
+    - @trains.each do |train|
+      tr
+        td  = train.id
+        td  = train.number
+        td  = link_to 'See more ...', train, class: 'btn btn-info'
+        td  = link_to 'Update', edit_train_path(train), class: 'btn btn-success'
+        td  = link_to 'Destroy', train, class: 'btn btn-danger',
+                remote: true, method: :delete, data: { train_id: train.id }
+
+= link_to 'Add Train', new_train_path, class: 'btn btn-primary float-right'
+= paginate @trains, theme: 'twitter-bootstrap-4'

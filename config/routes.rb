@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   resources :routes
   resources :railway_stations
+  resources :trains
 end
