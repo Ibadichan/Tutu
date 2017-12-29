@@ -1,5 +1,5 @@
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: :show
+  before_action :set_railway_station, except: %i[index new create]
 
   def index
     @railway_stations = RailwayStation.order(id: :asc).page params[:page]
@@ -12,8 +12,15 @@ class RailwayStationsController < ApplicationController
     respond_with @railway_station = RailwayStation.new
   end
 
+  def edit; end
+
   def create
     respond_with @railway_station = RailwayStation.create(railway_station_params)
+  end
+
+  def update
+    @railway_station.update(railway_station_params)
+    respond_with @railway_station
   end
 
   private

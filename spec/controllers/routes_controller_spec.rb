@@ -5,38 +5,20 @@ RSpec.describe RoutesController, type: :controller do
 
   let(:route) { create(:route) }
 
-  RSpec.shared_examples 'assigns the requested route to @route' do
-    it { expect(assigns(:route)).to eq route }
-  end
-
-  RSpec.shared_examples 'redirect to assigned route' do
-    it { expect(response).to redirect_to route }
-  end
-
   describe 'GET #index' do
     let(:routes) { create_list(:route, 2) }
 
     before { get :index }
 
-    it 'populates array of all routes' do
-      expect(assigns(:routes)).to eq routes
-    end
-
-    it 'renders template index' do
-      expect(response).to render_template :index
-    end
+    it { expect(assigns(:routes)).to match_array routes }
+    it { expect(response).to render_template :index }
   end
 
   describe 'GET #new' do
     before { get :new }
 
-    it 'assigns a new route to @route' do
-      expect(assigns(:route)).to be_a_new Route
-    end
-
-    it 'renders template new' do
-      expect(response).to render_template :new
-    end
+    it { expect(assigns(:route)).to be_a_new Route }
+    it { expect(response).to render_template :new }
   end
 
   describe 'POST #create' do
@@ -70,21 +52,15 @@ RSpec.describe RoutesController, type: :controller do
   describe 'GET #show' do
     before { get :show, params: { id: route } }
 
-    it_behaves_like 'assigns the requested route to @route'
-
-    it 'renders template show' do
-      expect(response).to render_template :show
-    end
+    it { expect(assigns(:route)).to eq route }
+    it { expect(response).to render_template :show }
   end
 
   describe 'GET #edit' do
     before { get :edit, params: { id: route } }
 
-    it_behaves_like 'assigns the requested route to @route'
-
-    it 'renders template edit' do
-      expect(response).to render_template :edit
-    end
+    it { expect(assigns(:route)).to eq route }
+    it { expect(response).to render_template :edit }
   end
 
   describe 'PATCH #update' do
@@ -93,29 +69,27 @@ RSpec.describe RoutesController, type: :controller do
     context 'with valid attributes' do
       before { patch :update, params: { id: route, route: { title: 'new title' } } }
 
-      it_behaves_like 'assigns the requested route to @route'
+      it { expect(assigns(:route)).to eq route }
 
       it 'updates attributes of route' do
         route.reload
         expect(route.title).to eq 'new title'
       end
 
-      it_behaves_like 'redirect to assigned route'
+      it { expect(response).to redirect_to route }
     end
 
     context 'with invalid attributes' do
       before { patch :update, params: { id: route, route: { title: nil } } }
 
-      it_behaves_like 'assigns the requested route to @route'
+      it { expect(assigns(:route)).to eq route }
 
       it 'does not update attributes of route' do
         route.reload
         expect(route.title).to eq 'my_title'
       end
 
-      it 'renders template edit' do
-        expect(response).to render_template :edit
-      end
+      it { expect(response).to render_template :edit }
     end
   end
 
