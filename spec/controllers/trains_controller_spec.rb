@@ -53,4 +53,41 @@ RSpec.describe TrainsController, type: :controller do
     it { expect(assigns(:train)).to eq train }
     it { expect(response).to render_template :show }
   end
+
+  describe 'GET #edit' do
+    before { get :edit, params: { id: train } }
+
+    it { expect(assigns(:train)).to eq train }
+    it { expect(response).to render_template :edit }
+  end
+
+  describe 'PATCH #update' do
+    let(:train) { create(:train, number: 'my number') }
+
+    context 'with valid attributes' do
+      before { patch :update, params: { id: train, train: { number: 'new number' } } }
+
+      it { expect(assigns(:train)).to eq train }
+
+      it 'updates attributes of train' do
+        train.reload
+        expect(train.number).to eq 'new number'
+      end
+
+      it { expect(response).to redirect_to train }
+    end
+
+    context 'with invalid attributes' do
+      before { patch :update, params: { id: train, train: { number: nil } } }
+
+      it { expect(assigns(:train)).to eq train }
+
+      it 'does not update attributes of train' do
+        train.reload
+        expect(train.number).to eq 'my number'
+      end
+
+      it { expect(response).to render_template :edit }
+    end
+  end
 end
