@@ -12,8 +12,15 @@ class TrainsController < ApplicationController
     respond_with @train = Train.new
   end
 
+  def edit; end
+
   def create
     respond_with @train = Train.create(train_params)
+  end
+
+  def update
+    @train.update(train_params)
+    respond_with @train
   end
 
   private
