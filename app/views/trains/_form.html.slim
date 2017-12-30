@@ -1,0 +1,7 @@
+= form_for train do |f|
+  .form-row
+    .form-group.col-6
+      = f.label :number
+      = f.text_field :number, class: 'form-control'
+  .form-group
+    = f.submit "#{train.new_record? ? 'Create' : 'Edit'}", class: 'btn btn-primary'
