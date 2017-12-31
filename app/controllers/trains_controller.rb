@@ -23,6 +23,10 @@ class TrainsController < ApplicationController
     respond_with @train
   end
 
+  def destroy
+    respond_with @train.destroy
+  end
+
   private
 
   def set_train
