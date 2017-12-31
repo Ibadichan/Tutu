@@ -90,4 +90,18 @@ RSpec.describe TrainsController, type: :controller do
       it { expect(response).to render_template :edit }
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'destroys the train' do
+      train
+      expect do
+        delete :destroy, params: { id: train, format: :js }
+      end.to change(Train, :count).by(-1)
+    end
+
+    it 'renders destroy template' do
+      delete :destroy, params: { id: train, format: :js }
+      expect(response).to render_template :destroy
+    end
+  end
 end
