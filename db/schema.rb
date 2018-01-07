@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 20_180_107_170_946) do
 
   create_table 'trains', force: :cascade do |t|
     t.string 'number'
+    t.bigint 'route_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.index ['route_id'], name: 'index_trains_on_route_id'
   end
 
   create_table 'users', force: :cascade do |t|
