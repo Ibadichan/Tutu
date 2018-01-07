@@ -5,4 +5,5 @@ RSpec.describe Train, type: :model do
 
   it { should belong_to(:route) }
   it { should have_many :tickets }
+  it { should belong_to(:current_station).class_name('RailwayStation') }
 end
