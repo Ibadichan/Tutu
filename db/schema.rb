@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_222_171_410) do
+ActiveRecord::Schema.define(version: 20_180_107_170_946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20_171_222_171_410) do
     t.string 'title'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'railway_stations_routes', force: :cascade do |t|
+    t.bigint 'route_id'
+    t.bigint 'railway_station_id'
+    t.index ['railway_station_id'], name: 'index_railway_stations_routes_on_railway_station_id'
+    t.index ['route_id'], name: 'index_railway_stations_routes_on_route_id'
   end
 
   create_table 'routes', force: :cascade do |t|
