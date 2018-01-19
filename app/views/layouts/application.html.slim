@@ -8,9 +8,9 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'layouts/header'
-    .container style=('margin-top: 50px;')
+    .container.margin-top-50
       = render 'layouts/messages'
-      .row
+      .row.margin-top-30
         .col-9
           = yield
         .col-3
